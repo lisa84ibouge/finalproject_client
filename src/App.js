@@ -6,7 +6,7 @@ import {Route, Redirect, Link} from 'react-router-dom';
 import Callback from './Callback/Callback';
 import SignUp from "./Components/SignUp";
 import axios from "axios";
-
+import Async from 'react-async';
 
 function HomePage(props) {
   const {authenticated} = props;
@@ -16,24 +16,49 @@ function HomePage(props) {
     }
   );
   
-    const fetchData = async () => {
-      const result = await axios(
-        'http://hn.algolia.com/api/v1/search?query=redux',
-      );
-      console.log(result.data);
-      return result.data;
-    };
-
-    let userData = fetchData();
-
+   
   const logout = () => {
     props.auth.logout();
     props.history.push('/');
   };
-  userData = null 
+
   if (authenticated)  {
     const {name} = props.auth.getProfile();
-    if (userData) {
+    console.log(props.auth);
+    const headers = { authorization: 'Bearer ' + props.auth.accessToken,
+    'content-type': 'application/json' } 
+    console.log("headers", headers);
+    async function fetchData() {
+        const result = await axios(
+      //  process.env.REACT_APP_USERSERVER + "/user?email=" + props.auth.getProfile() 
+      "http://localhost:8080/user?email=" + props.auth.profile.name, {headers}
+      );
+      return result.data;
+    };
+
+    //const loadUserData = fetchData().then(function (userData) {
+      //console.log("User Data", userData);
+      //return userData;
+    //});
+      return(  
+        <Async promiseFn={fetchData} > 
+        {({ data, error, isLoading }) => {
+         if (isLoading) return "Loading..."
+         if (error) return `Something went wrong: ${error.message}`
+         if (data)
+        return (
+          <Redirect to={{
+          pathname: '/results',
+          state: { user: data }
+          }}/>
+           )
+          return <Redirect to='/signup'/>
+          }}
+        
+        </Async>
+
+      )
+   /* if (userData.data) {
       return ( <ResultsComponent authenticated={authenticated}
           auth={props.auth}
           history={props.history}
@@ -41,6 +66,8 @@ function HomePage(props) {
     } else {
       return ( <Redirect to="/signup" />)
     }
+    */
+  
   }
 
   return (
@@ -69,6 +96,20 @@ function App(props) {
          )
         
       )}/>
+
+      <Route exact path='/results' render={() => (
+         authenticated ?(
+          <ResultsComponent authenticated={authenticated}
+            auth={props.auth}
+            history={props.history} />
+          
+          ) : (
+          <Redirect to="/"/>
+
+         )
+        
+      )}/>
+
       <Route exact path='/' render={() => (
         <HomePage
           authenticated={authenticated}
@@ -82,11 +123,17 @@ function App(props) {
 
 function ResultsComponent(props) {
   const {name} = props.auth.getProfile();
-  const [city, setCity ] = useState ("Paris")
+  const [state, setState ] = useState ({
+    user: {id: 0}
+  })
+  useEffect(() => {
+    console.log("Use Effect", props.history.location.state);
+    setState(props.history.location.state)
+  });
   return (
-    <div className="App">
-    <div> {name} </div>
-    <CitySearch city={city}/>
+    <div className="ResultsComponent">
+    <div> {state.user.id} </div>
+    <CitySearch city={""}/>
     <WikiCard/>
     </div>
   );
@@ -97,7 +144,7 @@ function CitySearch (props){
   return ( 
   <div className="row">
   <div className="input-field col s12 z-depth-5" id="searchBox">
-    <form id="searchFormEvent" onsubmit="event.preventDefault();">
+    <form id="searchFormEvent" onSubmit="event.preventDefault();">
       <div className="input-field col s12">
         <input id="query" type="text" className="input" value={props.city}/> 
         <a className="waves-effect waves-white btn-flat" id='search-btn'><i

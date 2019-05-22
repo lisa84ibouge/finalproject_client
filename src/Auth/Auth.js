@@ -5,11 +5,12 @@ export default class Auth {
     this.auth0 = new auth0.WebAuth({
       // the following three lines MUST be updated
       domain: 'dev-2b-g4sx1.auth0.com',
-      audience: 'https://dev-2b-g4sx1.auth0.com/userinfo',
+      audience: "userService",
+      //audience: 'https://dev-2b-g4sx1.auth0.com/userinfo',
       clientID: '7il3WVZfhImSnfVesnhQ90OoFuwcGKwF',
       redirectUri: 'http://localhost:3000/callback',
       responseType: 'token id_token',
-      scope: 'openid profile'
+      scope: 'openid profile all' 
       
     });
 
@@ -55,7 +56,9 @@ export default class Auth {
 
   setSession(authResult) {
     this.idToken = authResult.idToken;
+    console.log("Auth Result", authResult);
     this.profile = authResult.idTokenPayload;
+    this.accessToken = authResult.accessToken;
     // set the time that the id token will expire at
     this.expiresAt = authResult.expiresIn * 1000 + new Date().getTime();
   }
