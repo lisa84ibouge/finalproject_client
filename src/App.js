@@ -7,6 +7,12 @@ import Callback from './Callback/Callback';
 import SignUp from "./Components/SignUp";
 import axios from "axios";
 import Async from 'react-async';
+import CityUpdate from './Components/CityUpdate.js';
+import WikiCard from './Components/WikiCard.js';
+import Matches from './Components/Matches.js';
+import Map from './Components/Map.js';
+import Weather from './Components/Weather.js';
+import Landmark from './Components/Landmark.js';
 
 function HomePage(props) {
   const {authenticated} = props;
@@ -133,50 +139,37 @@ function ResultsComponent(props) {
   return (
     <div className="ResultsComponent">
     <div> {state.user.id} </div>
-    <CitySearch city={""}/>
+    <CityUpdate city={""}/>
+    <div className="row">
+    <div className="col s12 ">
     <WikiCard/>
+    </div>
+    </div>
+    <div className="row">
+    <div className="col s6 m6" id="col1">
+    <Matches/>
+    
+    </div>
+    <div className="col s6 m6" id="col2">
+    <Map/>
+    </div>
+    </div>
+
+     <div className="row">
+    <div className="col s6 m6" id="col1">
+    <Weather/>
+    
+    </div>
+    <div className="col s6 m6" id="col2">
+    <Landmark/>
+    </div>
+    </div>
+    
     </div>
   );
 }
 
-function CitySearch (props){
 
-  return ( 
-  <div className="row">
-  <div className="input-field col s12 z-depth-5" id="searchBox">
-    <form id="searchFormEvent" onSubmit="event.preventDefault();">
-      <div className="input-field col s12">
-        <input id="query" type="text" className="input" value={props.city}/> 
-        <a className="waves-effect waves-white btn-flat" id='search-btn'><i
-            className="material-icons left">search</i>search</a>
-      </div>
-    </form>
-  </div>
-</div>);
-
-}
-function WikiCard() {
-  let imgStyle={
-    float: 'left'
-  }
-return (
-<div className="row">
-    <div className="col s12 ">
-        <div className="card horizontal z-depth-5" id="entire">
-          <div className="card-image" id="bandPic">
-            <img style={imgStyle} src=""/>
-          </div>
-          <div className="card-stacked">
-            <div className="card-content" style={imgStyle} id="bandInfo"></div>
-            <div className="card-action">
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-);}
 
 
 
