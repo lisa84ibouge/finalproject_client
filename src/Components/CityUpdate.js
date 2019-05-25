@@ -10,9 +10,9 @@ function CityUpdate (props){
   <div className="input-field col s12 z-depth-5" id="searchBox">
     <form id="searchFormEvent" onSubmit="event.preventDefault();">
       <div className="input-field col s12">
-        <input id="query" type="text" className="input" value={props.city}/> 
-        <a className="waves-effect waves-white btn-flat" id='search-btn'><i
-            className="material-icons left">search</i>search</a>
+        <input id="query" type="text" className="input" style={{color: 'silver'}} value={props.city}/> 
+        <a className="waves-effect waves-white btn-flat" id='search-btn' style={{color: 'silver', fontWeight: "bold"}}><i
+            className="material-icons left">search</i>Update</a>
       </div>
     </form>
   </div>

@@ -26,13 +26,14 @@ function Matches(props) {
         
         <div key={m.id}>
         <div>{m.name} {m.age} </div>
-                <div class="profilePic"
+                <div className="profilePic"
                   style={{backgroundSize: "100%", width: "50px", height: "50px", display: "inline-block", backgroundImage: "url('" + m.photo + "')"}}>
                 </div> <span>{m.lang} {m.bio} {m.city} {m.country}</span>
                 <div>{m.userName} {m.email}</div>
         </div>
         
         )
+        console.log("Matches Divs: ", matchesDivs);
         setState({
           matches: result.data, 
           matchesDivs: matchesDivs
