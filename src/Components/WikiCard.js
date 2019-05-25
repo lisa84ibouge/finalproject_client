@@ -16,12 +16,14 @@ const [state, setState] = useState({
 
 
 useEffect(() => {
+
 //    console.log("Wiki Card Two", props)
     if (!props.initialized)
     {
         return;
     }
 //    console.log("Wiki Card Three", props)
+//  TODO: use bounds from parent component 
     axios.get("https://api.sygictravelapi.com/1.1/en/places/list?query=" + encodeURIComponent(props.city), {
   headers: {'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn'}
 }).then(function (result) {

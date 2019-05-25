@@ -133,7 +133,8 @@ function ResultsComponent(props) {
   const [state, setState ] = useState ({
     user: {id: 0},
     coordinates: {lat: -34.397, lng: 150.644}, 
-    initialized: false
+    initialized: false,
+    bounds: null
   })
   useEffect(() => {
     console.log("Use Effect", props.history.location.state);
@@ -147,7 +148,9 @@ function ResultsComponent(props) {
         );
         console.log("Results", result)
         let coordinate = {lat: result.data.results[0].geometry.location.lat, lng: result.data.results[0].geometry.location.lng}
-        setState({user: currState.user, coordinates: coordinate, initialized: true})
+        let bounds = result.data.results[0].geometry.bounds
+        setState({user: currState.user, coordinates: coordinate, bounds: bounds, initialized: true})
+
         //setState({user: state.user, coordinates: {result.data}});
     }
    fetchCoordData()
@@ -182,7 +185,7 @@ function ResultsComponent(props) {
     
     </div>
     <div className="col s6 m6" id="col2">
-    <Landmark/>
+    <Landmark city={state.user.cityTwo} bounds={state.bounds} initialized={state.initialized}/>
     </div>
     </div>
     
