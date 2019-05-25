@@ -16,37 +16,18 @@ function Landmark(props) {
     }
     //    console.log("Wiki Card Three", props)
 
-    var bBox =
-      props.bounds.southwest.lat +
-      "," +
-      props.bounds.southwest.lng +
-      "," +
-      props.bounds.northeast.lat +
-      "," +
-      props.bounds.northeast.lng;
+    let poiID = props.places[0].id;
     axios
-      .get(
-        "https://api.sygictravelapi.com/1.1/en/places/list?bounds=" +
-          bBox +
-          "&levels=poi",
-        {
-          headers: { "x-api-key": "aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn" }
-        }
-      )
-      .then(function(result2) {
-        let poiID = result2.data.data.places[0].id;
-        axios
-          .get("https://api.sygictravelapi.com/1.1/en/places/" + poiID, {
-            headers: { "x-api-key": "aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn" }
-          })
-          .then(function(result3) {
-            let description = result3.data.data.place.description.text;
-            console.log("Landmark Foo", result3.data.data.place);
-            setState({
-              text: description,
-              imageURL: result3.data.data.place.main_media.media[0].url
-            });
-          });
+      .get("https://api.sygictravelapi.com/1.1/en/places/" + poiID, {
+        headers: { "x-api-key": "aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn" }
+      })
+      .then(function(result3) {
+        let description = result3.data.data.place.description.text;
+        console.log("Landmark Foo", result3.data.data.place);
+        setState({
+          text: description,
+          imageURL: result3.data.data.place.main_media.media[0].url
+        });
       });
   }, [props]);
 
