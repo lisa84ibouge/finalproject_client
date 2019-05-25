@@ -87,7 +87,7 @@ function HomePage(props) {
 
 function App(props) {
   const authenticated = props.auth.isAuthenticated();
-
+  console.log("Bearer Token: " + props.auth.accessToken)
   return (
     <div className="App">
       <Route exact path='/callback' render={() => (
@@ -168,7 +168,7 @@ function ResultsComponent(props) {
     </div>
     <div className="row">
     <div className="col s6 m6" id="col1">
-    <Matches/>
+    <Matches auth={props.auth} city={state.user.cityTwo} initialized={state.initialized}/>
     
     </div>
     <div className="col s6 m6" id="col2">
