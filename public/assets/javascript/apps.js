@@ -124,7 +124,8 @@ function contentSearch(poiID) {
     async: true,
     dataType: "json",
     headers: {
-      'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn'
+      'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn',
+      "Access-Control-Allow-Origin": "*"
     },
     success: function (data, err) {
       console.log("This is the content search data")

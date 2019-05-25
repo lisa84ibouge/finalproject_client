@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-google-maps/api": "^1.2.3-alpha.11",
     "auth0-js": "^9.10.2",
     "axios": "^0.18.0",
     "dotenv": "^8.0.0",
     "google-map-react": "^1.1.4",
+    "prop-types": "^15.7.2",
     "react": "^16.8.6",
     "react-async": "^6.2.0",
     "react-dom": "^16.8.6",

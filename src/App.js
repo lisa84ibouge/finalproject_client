@@ -13,6 +13,7 @@ import Matches from './Components/Matches.js';
 import Map from './Components/Map.js';
 import Weather from './Components/Weather.js';
 import Landmark from './Components/Landmark.js';
+import { GoogleMap, LoadScript } from '@react-google-maps/api';
 
 function HomePage(props) {
   const {authenticated} = props;
@@ -130,19 +131,39 @@ function App(props) {
 function ResultsComponent(props) {
   const {name} = props.auth.getProfile();
   const [state, setState ] = useState ({
-    user: {id: 0}
+    user: {id: 0},
+    coordinates: {lat: -34.397, lng: 150.644}, 
+    initialized: false
   })
   useEffect(() => {
     console.log("Use Effect", props.history.location.state);
+    const currState = props.history.location.state;
     setState(props.history.location.state)
-  });
+    const fetchCoordData = async() => {
+
+    
+        const result = await axios(
+          'https://maps.googleapis.com/maps/api/geocode/json?address=' + currState.user.cityTwo + '&key=AIzaSyAvaMUPWVWbf-IfNSQxrrcoYaQ7TpVrSVM'
+        );
+        console.log("Results", result)
+        let coordinate = {lat: result.data.results[0].geometry.location.lat, lng: result.data.results[0].geometry.location.lng}
+        setState({user: currState.user, coordinates: coordinate, initialized: true})
+        //setState({user: state.user, coordinates: {result.data}});
+    }
+   fetchCoordData()
+  }, []);
+
+
+
+
+
   return (
     <div className="ResultsComponent">
     <div> {state.user.id} </div>
-    <CityUpdate city={""}/>
+    <CityUpdate city={state.user.cityTwo} initialized={state.initialized}/>
     <div className="row">
     <div className="col s12 ">
-    <WikiCard/>
+    <WikiCard city={state.user.cityTwo} initialized={state.initialized}/>
     </div>
     </div>
     <div className="row">
@@ -151,7 +172,7 @@ function ResultsComponent(props) {
     
     </div>
     <div className="col s6 m6" id="col2">
-    <Map/>
+    <Map center={state.coordinates}/>
     </div>
     </div>
 
@@ -165,6 +186,7 @@ function ResultsComponent(props) {
     </div>
     </div>
     
+
     </div>
   );
 }

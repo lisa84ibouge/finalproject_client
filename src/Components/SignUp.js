@@ -31,7 +31,7 @@ function SignUp (props) {
     }
     return (
         <div>
-        <form onSubmit={submitForm}>
+        <form onSubmit={submitForm} method="POST">
         <div>
          
               <h4 className="ui dividing header">Personal Information</h4>
