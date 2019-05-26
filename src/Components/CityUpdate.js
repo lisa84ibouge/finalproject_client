@@ -12,7 +12,7 @@ class CityUpdate extends React.Component{
     this.handleSubmit=this.handleSubmit.bind(this)
   }
   handleChange(event){
-    console.log("handleChange:", event.target.value)
+    //console.log("handleChange:", event.target.value)
     this.setState({city: event.target.value})
   }
   handleSubmit(event) {
@@ -26,7 +26,7 @@ class CityUpdate extends React.Component{
     <form id="searchFormEvent" onSubmit={this.handleSubmit}>
       <div className="input-field col s12">
         <input id="query" type="text" className="input" style={{color: 'silver'}} value={this.state.city} onChange={this.handleChange}/> 
-        <a className="waves-effect waves-white btn-flat" id='search-btn' style={{color: 'silver', fontWeight: "bold"}}><i
+        <a className="waves-effect waves-white btn-flat" id='search-btn' style={{color: 'silver', fontWeight: "bold"}} onClick={this.handleSubmit}><i
             className="material-icons left">search</i>Update</a>
       </div>
     </form>
