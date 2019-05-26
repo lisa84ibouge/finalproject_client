@@ -136,7 +136,7 @@ function App(props) {
 function ResultsComponent(props) {
   const { name } = props.auth.getProfile();
   const [state, setState] = useState({
-    user: { id: 0 },
+    user:  props.history.location.state.user,
     coordinates: { lat: -34.397, lng: 150.644 },
     initialized: false,
     bounds: null,
@@ -144,12 +144,10 @@ function ResultsComponent(props) {
   });
   useEffect(() => {
     console.log("Use Effect", props.history.location.state);
-    const currState = props.history.location.state;
-    setState(props.history.location.state);
     const fetchCoordData = async () => {
       const result = await axios(
         "https://maps.googleapis.com/maps/api/geocode/json?address=" +
-          currState.user.cityTwo +
+          state.user.cityTwo +
           "&key=AIzaSyAvaMUPWVWbf-IfNSQxrrcoYaQ7TpVrSVM"
       );
       console.log("Results", result);
@@ -177,7 +175,7 @@ function ResultsComponent(props) {
         }
       );
       setState({
-        user: currState.user,
+        user: state.user,
         coordinates: coordinate,
         bounds: bounds,
         places: placesResult.data.data.places,
@@ -187,12 +185,22 @@ function ResultsComponent(props) {
       //setState({user: state.user, coordinates: {result.data}});
     };
     fetchCoordData();
-  }, []);
+  }, [state.user.cityTwo]);
+
+  function updateCityTwo(city) {
+      setState({
+        user: {
+          ...state.user, 
+          cityTwo: city
+        }
+      }); 
+
+  }
 
   return (
     <div className="ResultsComponent">
       <div> {state.user.id} </div>
-      <CityUpdate city={state.user.cityTwo} initialized={state.initialized} />
+      <CityUpdate city={state.user.cityTwo} updateCityTwo={updateCityTwo} initialized={state.initialized} />
       <div className="row">
         <div className="col s12 ">
           <WikiCard city={state.user.cityTwo} places={state.places} initialized={state.initialized} />
