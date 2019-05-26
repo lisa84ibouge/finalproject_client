@@ -27,9 +27,9 @@ function Matches(props) {
         <div key={m.id}>
         <div>{m.name} {m.age} </div>
                 <div className="profilePic"
-                  style={{backgroundSize: "100%", width: "50px", height: "50px", display: "inline-block", backgroundImage: "url('" + m.photo + "')"}}>
-                </div> <span>{m.lang} {m.bio} {m.city} {m.country}</span>
-                <div>{m.userName} {m.email}</div>
+                  style={{backgroundSize: "100%", width: "150px", height: "150px", backgroundRepeat: "no-repeat", display: "inline-block", float: "left",  backgroundImage: "url('" + m.photo + "')"}}>
+                </div> <span>{m.lang} {m.bio} {m.city} {m.country} {m.userName} {m.email}</span>
+                <div></div>
         </div>
         
         )
