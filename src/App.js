@@ -122,10 +122,10 @@ function App(props) {
 
     <Route
         exact
-        path="/chat"
+        path="/inbox"
         render={() =>
           authenticated ? (
-            <ChatComponent
+            <InboxComponent
               authenticated={authenticated}
               auth={props.auth}
               history={props.history}
@@ -165,7 +165,7 @@ function ResultsComponent(props) {
     let chatIcon = document.getElementById("chatIcon");
       chatIcon.onclick=function(){
       props.history.push({
-        pathname: '/chat', 
+        pathname: '/inbox', 
         state: state 
       }
         ) 
@@ -287,8 +287,8 @@ function ResultsComponent(props) {
 }
 
 
-function ChatComponent(props) {
-  console.log("chatComponent", props.history.location.state)
+function InboxComponent(props) {
+  console.log("inboxComponent", props.history.location.state)
   const { name } = props.auth.getProfile();
   const [state, setState] = useState({
     user:  props.history.location.state.user,
@@ -310,7 +310,7 @@ function ChatComponent(props) {
 
 
   return (
-    <div className="ChatComponent">
+    <div className="InboxComponent">
       HI
     </div>
   );

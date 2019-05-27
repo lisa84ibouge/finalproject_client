@@ -68,7 +68,7 @@ function Chat(props) {
     }, [props]);
     return(
         <span>
-            <div ref={c => refContainer = c}>Loading...</div>
+            <div ref={c => refContainer = c}>   </div>
         </span>
     )
 }
