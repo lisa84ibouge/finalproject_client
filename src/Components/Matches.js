@@ -31,7 +31,7 @@ function Matches(props) {
                   
                   
                   
-                </div> <div><button onClick={()=> props.startChat(m)}>MESSAGE</button></div></div><tr><p><span style={{display: "inline-block"}}>{m.name} {m.age}{m.lang} {m.bio} {m.city} {m.country} {m.userName} {m.email}</span></p></tr>
+                </div> <div><button style={{backgroundColor: "Purple", color: "white", fontWeight: "bold", fontSize: "125%"}}onClick={()=> props.startChat(m)}>MESSAGE</button></div></div><tr><p><span style={{display: "inline-block"}}>{m.name} {m.age}{m.lang} {m.bio} {m.city} {m.country} {m.userName} {m.email}</span></p></tr>
                 <div></div>
         </div>
         </table>
