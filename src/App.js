@@ -146,6 +146,11 @@ function ResultsComponent(props) {
   });
   useEffect(() => {
     console.log("Use Effect", props.history.location.state);
+    let chatIcon = document.getElementById("chatIcon");
+      chatIcon.onclick=function(){
+      props.history.push('/chat') 
+    }
+    chatIcon.hidden = false;
     const fetchCoordData = async () => {
       const result = await axios(
         "https://maps.googleapis.com/maps/api/geocode/json?address=" +
