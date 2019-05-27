@@ -27,7 +27,7 @@ function Landmark(props) {
       landmarkRows: landmarkRows
     
     })
-  })
+  }, [props])
 
     /*for (var i = 0; i < data.data.places.length; i++) {
       var name = data.data.places[i].name;

@@ -217,7 +217,7 @@ function ResultsComponent(props) {
 
   return (
     <div className="ResultsComponent">
-      <div> {state.user.id} </div>
+      <div> <span style={{color: 'silver', float: 'left', fontWeight: 'bold', marginLeft: '15px'}}>Welcome back, {state.user.name}!</span></div>
       <CityUpdate city={state.user.cityTwo} updateCityTwo={updateCityTwo} initialized={state.initialized} />
       <div className="row">
         <div className="col s12 ">
