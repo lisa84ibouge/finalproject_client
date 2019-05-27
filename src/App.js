@@ -120,6 +120,22 @@ function App(props) {
         }
       />
 
+    <Route
+        exact
+        path="/chat"
+        render={() =>
+          authenticated ? (
+            <ChatComponent
+              authenticated={authenticated}
+              auth={props.auth}
+              history={props.history}
+            />
+          ) : (
+            <Redirect to="/" />
+          )
+        }
+      />
+
       <Route
         exact
         path="/"
@@ -148,9 +164,14 @@ function ResultsComponent(props) {
     console.log("Use Effect", props.history.location.state);
     let chatIcon = document.getElementById("chatIcon");
       chatIcon.onclick=function(){
-      props.history.push('/chat') 
+      props.history.push({
+        pathname: '/chat', 
+        state: state 
+      }
+        ) 
     }
     chatIcon.hidden = false;
+    chatIcon.innerHTML = "INBOX"
     const fetchCoordData = async () => {
       const result = await axios(
         "https://maps.googleapis.com/maps/api/geocode/json?address=" +
@@ -261,6 +282,33 @@ function ResultsComponent(props) {
         otherUser={state.otherUser}
 
       />}
+    </div>
+  );
+}
+
+
+function ChatComponent(props) {
+  console.log("chatComponent", props.history.location.state)
+  const { name } = props.auth.getProfile();
+  const [state, setState] = useState({
+    user:  props.history.location.state.user,
+    initialized: false,
+  });
+  useEffect(() => {
+    console.log("Use Effect", props.history.location.state);
+    let chatIcon = document.getElementById("chatIcon");
+      chatIcon.onclick=function(){
+      props.history.push('/results') 
+    }
+    chatIcon.hidden = false;
+    chatIcon.innerHTML = "HOME"
+   
+  }, []);
+
+
+  return (
+    <div className="ChatComponent">
+      HI
     </div>
   );
 }
