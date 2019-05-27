@@ -298,7 +298,10 @@ function ChatComponent(props) {
     console.log("Use Effect", props.history.location.state);
     let chatIcon = document.getElementById("chatIcon");
       chatIcon.onclick=function(){
-      props.history.push('/results') 
+        props.history.push({
+          pathname: '/results', 
+          state: state 
+        })
     }
     chatIcon.hidden = false;
     chatIcon.innerHTML = "HOME"
