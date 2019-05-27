@@ -14,6 +14,7 @@ import Map from "./Components/Map.js";
 import Weather from "./Components/Weather.js";
 import Landmark from "./Components/Landmark.js";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
+import Chat from './Components/Chat.js';
 
 function HomePage(props) {
   const { authenticated } = props;
@@ -40,6 +41,7 @@ function HomePage(props) {
         "http://localhost:8080/user?email=" + props.auth.profile.name,
         { headers }
       );
+      console.log('loggedin userdata:', result)
       return result.data;
     }
 
@@ -179,7 +181,8 @@ function ResultsComponent(props) {
         coordinates: coordinate,
         bounds: bounds,
         places: placesResult.data.data.places,
-        initialized: true
+        initialized: true, 
+        showChat: false
       });
 
       //setState({user: state.user, coordinates: {result.data}});
@@ -193,9 +196,24 @@ function ResultsComponent(props) {
           ...state.user, 
           cityTwo: city
         }
-      }); 
+      });
+
 
   }
+
+  function startChat(otherUser) {
+    console.log("startChat", state)
+    console.log("start chat user:", otherUser)
+    setState({
+     ...state, 
+     showChat: true,
+     otherUser: otherUser
+     
+    });
+
+
+}
+
 
   return (
     <div className="ResultsComponent">
@@ -212,6 +230,7 @@ function ResultsComponent(props) {
             auth={props.auth}
             city={state.user.cityTwo}
             initialized={state.initialized}
+            startChat={startChat}
           />
         </div>
         <div className="col s6 m6" id="col2">
@@ -232,6 +251,11 @@ function ResultsComponent(props) {
           />
         </div>
       </div>
+      {state.showChat && <Chat
+        user={state.user}
+        otherUser={state.otherUser}
+
+      />}
     </div>
   );
 }

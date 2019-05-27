@@ -23,15 +23,18 @@ function Matches(props) {
       .then(function(result) {
         console.log("Matches Two: ", result)
         const matchesDivs = result.data.map((m) => 
-        
+        <table>
         <div key={m.id}>
-        <div>{m.name} {m.age} </div>
+        <div> </div><div style={{display: "inline-block", float: "left"}}>
                 <div className="profilePic"
-                  style={{backgroundSize: "100%", width: "150px", height: "150px", backgroundRepeat: "no-repeat", display: "inline-block", float: "left",  backgroundImage: "url('" + m.photo + "')"}}>
-                </div> <span>{m.lang} {m.bio} {m.city} {m.country} {m.userName} {m.email}</span>
+                  style={{backgroundSize: "100%", width: "150px", height: "150px", backgroundRepeat: "no-repeat",  backgroundImage: "url('" + m.photo + "')"}}>
+                  
+                  
+                  
+                </div> <div><button onClick={()=> props.startChat(m)}>MESSAGE</button></div></div><tr><p><span style={{display: "inline-block"}}>{m.name} {m.age}{m.lang} {m.bio} {m.city} {m.country} {m.userName} {m.email}</span></p></tr>
                 <div></div>
         </div>
-        
+        </table>
         )
         console.log("Matches Divs: ", matchesDivs);
         setState({
@@ -39,7 +42,7 @@ function Matches(props) {
           matchesDivs: matchesDivs
         })
       });
-  }, [props]);
+  }, [props.city, props.initialized]);
 
   return (
     <div
