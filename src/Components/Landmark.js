@@ -5,8 +5,7 @@ import axios from "axios";
 function Landmark(props) {
   console.log("Landmark", props);
   const [state, setState] = useState({
-    text: "loading",
-    imageURL: null
+    landmarkRows: null
   });
 
   useEffect(() => {
@@ -15,49 +14,71 @@ function Landmark(props) {
       return;
     }
     //    console.log("Wiki Card Three", props)
+    const landmarkRows = props.places.map((m) => 
+      <tr>
+        <td>
+          <img src={m.thumbnail_url}/>
+        </td>
+        <td>{m.name}</td>
+        <td>{m.perex}</td>
+      </tr>
+    )
+    setState({
+      landmarkRows: landmarkRows
+    
+    })
+  })
 
-    let poiID = props.places[0].id;
-    axios
-      .get("https://api.sygictravelapi.com/1.1/en/places/" + poiID, {
-        headers: { "x-api-key": "aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn" }
-      })
-      .then(function(result3) {
-        let description = result3.data.data.place.description.text;
-        console.log("Landmark Foo", result3.data.data.place);
-        setState({
-          text: description,
-          imageURL: result3.data.data.place.main_media.media[0].url
-        });
-      });
-  }, [props]);
+    /*for (var i = 0; i < data.data.places.length; i++) {
+      var name = data.data.places[i].name;
+      var perex = data.data.places[i].perex;
+      var thumbnail = data.data.places[i].thumbnail_url;
+      var poiID = data.data.places[i].id;
+      if (i == 0) {
+        contentSearch(poiID);
+      }
+      var newTableRow = $("<tr>");
+      var imageCell = $("<td>")
+      var image = $('<img />', {
+        src: thumbnail
+      }).appendTo(imageCell);
+      var nameCell = $("<td>").text(name);
+      var perexCell = $("<td>").text(perex);
+      // var thumbnailCell = $("<td>").html(thumbnail);
+      $(newTableRow).append(nameCell, perexCell, imageCell)
+      tableObject.append(newTableRow);
+    
+    }
+*/
+
 
   return (
-    <div
-      className="card-panel z-depth-5"
-      style={{ overflowY: "scroll", height: "450px" }}
-    >
-      <table>
-        <thead>
-          <tr>
-            <th
+   
+    <div className="card-panel z-depth-5"
+      style={{ overflowY: "scroll", height: "450px" }}>
+      <span
               className="landmarkHeader"
               style={{
                 fontSize: "150%",
                 textAlign: "center",
                 fontWeight: "bold"
+              
               }}
             >
               <b>Top 10 Things To Do</b>
-            </th>
+            </span>
+      <table>
+        <thead>
+          <tr>
+          
           </tr>
         </thead>
+              <tbody>
+                {state.landmarkRows}
+              </tbody>
       </table>
-      <div className="card-content">
-        <div className="row">
-          <ul id="placeDetails" />
-        </div>
-      </div>
     </div>
+   
   );
-}
+            }          
 export default Landmark;
