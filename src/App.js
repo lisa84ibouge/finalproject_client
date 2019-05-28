@@ -363,7 +363,7 @@ class InboxComponent extends React.Component {
   render() {
     return (
       <div className="InboxComponent">
-        <div ref={this.refContainer} style={{width: "90%", margin: "30px", height: "500px"}}> </div>
+        <div ref={this.refContainer} style={{width: "90%", margin: "80px", height: "600px"}}> </div>
       </div>
     );
   }
