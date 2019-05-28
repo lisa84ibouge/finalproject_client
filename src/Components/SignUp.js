@@ -87,9 +87,10 @@ function SignUp (props) {
                     <label>Username:</label>
                     <input onChange={updateField} name="username" type="text" placeholder="Username" />
                   </div>
-                
-                    <input name="email" type="hidden" value={props.auth.profile.name} />
-              
+                  <div className="field">
+                    <label>Email Address:</label>
+                    <input onChange={updateField} name="email" type="text" placeholder={props.auth.profile.name} />
+                  </div>
                 </div>
               </div>
            </div>
