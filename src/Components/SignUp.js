@@ -29,7 +29,7 @@ function SignUp(props) {
         headers
       })
       .then(function(result) {
-        console.log(result.data);
+        console.log("sign up result.data", result.data);
         setState({ fireRedirect: true, user: result.data });
       });
 

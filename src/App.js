@@ -95,13 +95,13 @@ function App(props) {
       <Route
         exact
         path="/callback"
-        render={() => <Callback auth={props.auth} />}
+        render={() => <Callback history={props.history} auth={props.auth} />}
       />
       <Route
         exact
         path="/signup"
         render={() =>
-          authenticated ? <SignUp auth={props.auth} /> : <Redirect to="/" />
+           authenticated ? <SignUp history={props.history} auth={props.auth} /> : <Redirect to="/" />
         }
       />
 
@@ -154,6 +154,7 @@ function App(props) {
 
 function ResultsComponent(props) {
   const { name } = props.auth.getProfile();
+  console.log("results component user", props.history.location.state.user )
   const [state, setState] = useState({
     user: props.history.location.state.user,
     coordinates: { lat: -34.397, lng: 150.644 },
