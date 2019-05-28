@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import { withRouter } from "react-router";
@@ -14,7 +14,8 @@ import Map from "./Components/Map.js";
 import Weather from "./Components/Weather.js";
 import Landmark from "./Components/Landmark.js";
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
-import Chat from './Components/Chat.js';
+import Chat from "./Components/Chat.js";
+import Talk from "talkjs";
 
 function HomePage(props) {
   const { authenticated } = props;
@@ -41,7 +42,7 @@ function HomePage(props) {
         "http://localhost:8080/user?email=" + props.auth.profile.name,
         { headers }
       );
-      console.log('loggedin userdata:', result)
+      console.log("loggedin userdata:", result);
       return result.data;
     }
 
@@ -120,7 +121,7 @@ function App(props) {
         }
       />
 
-    <Route
+      <Route
         exact
         path="/inbox"
         render={() =>
@@ -154,7 +155,7 @@ function App(props) {
 function ResultsComponent(props) {
   const { name } = props.auth.getProfile();
   const [state, setState] = useState({
-    user:  props.history.location.state.user,
+    user: props.history.location.state.user,
     coordinates: { lat: -34.397, lng: 150.644 },
     initialized: false,
     bounds: null,
@@ -163,15 +164,14 @@ function ResultsComponent(props) {
   useEffect(() => {
     console.log("Use Effect", props.history.location.state);
     let chatIcon = document.getElementById("chatIcon");
-      chatIcon.onclick=function(){
+    chatIcon.onclick = function() {
       props.history.push({
-        pathname: '/inbox', 
-        state: state 
-      }
-        ) 
-    }
+        pathname: "/inbox",
+        state: state
+      });
+    };
     chatIcon.hidden = false;
-    chatIcon.innerHTML = "INBOX"
+    chatIcon.innerHTML = "INBOX";
     const fetchCoordData = async () => {
       const result = await axios(
         "https://maps.googleapis.com/maps/api/geocode/json?address=" +
@@ -207,7 +207,7 @@ function ResultsComponent(props) {
         coordinates: coordinate,
         bounds: bounds,
         places: placesResult.data.data.places,
-        initialized: true, 
+        initialized: true,
         showChat: false
       });
 
@@ -217,37 +217,51 @@ function ResultsComponent(props) {
   }, [state.user.cityTwo]);
 
   function updateCityTwo(city) {
-      setState({
-        user: {
-          ...state.user, 
-          cityTwo: city
-        }
-      });
-
-
+    setState({
+      user: {
+        ...state.user,
+        cityTwo: city
+      }
+    });
   }
 
   function startChat(otherUser) {
-    console.log("startChat", state)
-    console.log("start chat user:", otherUser)
+    console.log("startChat", state);
+    console.log("start chat user:", otherUser);
     setState({
-     ...state, 
-     showChat: true,
-     otherUser: otherUser
-     
+      ...state,
+      showChat: true,
+      otherUser: otherUser
     });
-
-
-}
-
+  }
 
   return (
     <div className="ResultsComponent">
-      <div> <span style={{color: 'silver', float: 'left', fontWeight: 'bold', marginLeft: '15px'}}>Welcome back, {state.user.name}!</span></div>
-      <CityUpdate city={state.user.cityTwo} updateCityTwo={updateCityTwo} initialized={state.initialized} />
+      <div>
+        {" "}
+        <span
+          style={{
+            color: "silver",
+            float: "left",
+            fontWeight: "bold",
+            marginLeft: "15px"
+          }}
+        >
+          Welcome back, {state.user.name}!
+        </span>
+      </div>
+      <CityUpdate
+        city={state.user.cityTwo}
+        updateCityTwo={updateCityTwo}
+        initialized={state.initialized}
+      />
       <div className="row">
         <div className="col s12 ">
-          <WikiCard city={state.user.cityTwo} places={state.places} initialized={state.initialized} />
+          <WikiCard
+            city={state.user.cityTwo}
+            places={state.places}
+            initialized={state.initialized}
+          />
         </div>
       </div>
       <div className="row">
@@ -277,41 +291,68 @@ function ResultsComponent(props) {
           />
         </div>
       </div>
-      {state.showChat && <Chat
-        user={state.user}
-        otherUser={state.otherUser}
-
-      />}
+      {state.showChat && <Chat user={state.user} otherUser={state.otherUser} />}
     </div>
   );
 }
 
-
 function InboxComponent(props) {
-  console.log("inboxComponent", props.history.location.state)
+  console.log("inboxComponent", props.history.location.state);
   const { name } = props.auth.getProfile();
+  let inbox = undefined;
+  let refContainer = useRef(null);
   const [state, setState] = useState({
-    user:  props.history.location.state.user,
-    initialized: false,
+    user: props.history.location.state.user,
+    initialized: false
   });
   useEffect(() => {
     console.log("Use Effect", props.history.location.state);
     let chatIcon = document.getElementById("chatIcon");
-      chatIcon.onclick=function(){
-        props.history.push({
-          pathname: '/results', 
-          state: state 
-        })
-    }
+    chatIcon.onclick = function() {
+      props.history.push({
+        pathname: "/results",
+        state: state
+      });
+    };
     chatIcon.hidden = false;
-    chatIcon.innerHTML = "HOME"
-   
-  }, []);
+    chatIcon.innerHTML = "HOME";
 
+    Talk.ready
+      .then(() => {
+        let userData = {
+          id: state.user.id,
+          name: state.user.name,
+          email: state.user.email,
+          welcomeMessage: "Hey there! How are you? :-)"
+        };
+        if (state.user.photo) {
+          userData.photoUrl = state.user.photo;
+        }
+        const me = new Talk.User(userData);
+
+        if (!window.talkSession) {
+          window.talkSession = new Talk.Session({
+            appId: "tyjb0JJP",
+            me: me
+          });
+        }
+        inbox = window.talkSession.createInbox();
+        console.log("refContainer:", refContainer);
+        window.inboxRef = refContainer
+        window.inbox = inbox;
+       // inbox.mount(refContainer.current);
+      })
+      .catch(e => console.error(e));
+    return function cleanUp() {
+      if (inbox) {
+        inbox.destroy();
+      }
+    };
+  }, [props]);
 
   return (
     <div className="InboxComponent">
-      HI
+      <div ref={c => (refContainer = c)}> </div>
     </div>
   );
 }
