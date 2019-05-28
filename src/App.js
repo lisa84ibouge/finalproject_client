@@ -296,22 +296,28 @@ function ResultsComponent(props) {
   );
 }
 
-function InboxComponent(props) {
-  console.log("inboxComponent", props.history.location.state);
-  const { name } = props.auth.getProfile();
-  let inbox = undefined;
-  let refContainer = useRef(null);
-  const [state, setState] = useState({
-    user: props.history.location.state.user,
-    initialized: false
-  });
-  useEffect(() => {
-    console.log("Use Effect", props.history.location.state);
+class InboxComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.props = props;
+    this.inbox = undefined;
+    this.refContainer = React.createRef();
+    console.log("inboxComponent", props.history.location.state);
+    const { name } = props.auth.getProfile();
+
+    this.state = {
+      user: props.history.location.state.user,
+      initialized: false
+    };
+  }
+
+  componentDidMount() {
+    console.log("Use Effect", this.props.history.location.state);
     let chatIcon = document.getElementById("chatIcon");
     chatIcon.onclick = function() {
-      props.history.push({
+      this.props.history.push({
         pathname: "/results",
-        state: state
+        state: this.state
       });
     };
     chatIcon.hidden = false;
@@ -320,13 +326,13 @@ function InboxComponent(props) {
     Talk.ready
       .then(() => {
         let userData = {
-          id: state.user.id,
-          name: state.user.name,
-          email: state.user.email,
+          id: this.state.user.id,
+          name: this.state.user.name,
+          email: this.state.user.email,
           welcomeMessage: "Hey there! How are you? :-)"
         };
-        if (state.user.photo) {
-          userData.photoUrl = state.user.photo;
+        if (this.state.user.photo) {
+          userData.photoUrl = this.state.user.photo;
         }
         const me = new Talk.User(userData);
 
@@ -336,25 +342,28 @@ function InboxComponent(props) {
             me: me
           });
         }
-        inbox = window.talkSession.createInbox();
-        console.log("refContainer:", refContainer);
-        window.inboxRef = refContainer
-        window.inbox = inbox;
-       // inbox.mount(refContainer.current);
+        this.inbox = window.talkSession.createInbox();
+        console.log("refContainer:", this.refContainer);
+        window.inboxRef = this.refContainer;
+        window.inbox = this.inbox;
+        this.inbox.mount(this.refContainer.current);
       })
       .catch(e => console.error(e));
-    return function cleanUp() {
-      if (inbox) {
-        inbox.destroy();
-      }
-    };
-  }, [props]);
+  }
 
-  return (
-    <div className="InboxComponent">
-      <div ref={c => (refContainer = c)}> </div>
-    </div>
-  );
+  componentWillUnmount() {
+    if (this.inbox) {
+      this.inbox.destroy();
+    }
+  }
+
+  render() {
+    return (
+      <div className="InboxComponent">
+        <div ref={this.refContainer}> </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(App);
