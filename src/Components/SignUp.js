@@ -180,7 +180,7 @@ function SignUp(props) {
         <Redirect
           to={{
             pathname: "/results",
-            state: { user: state.userData }
+            state: { user: state.user }
           }}
         />
       )}
