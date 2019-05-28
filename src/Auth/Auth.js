@@ -8,7 +8,7 @@ export default class Auth {
       audience: "userService",
       //audience: 'https://dev-2b-g4sx1.auth0.com/userinfo',
       clientID: '7il3WVZfhImSnfVesnhQ90OoFuwcGKwF',
-      redirectUri: 'http://localhost:3000/callback',
+      redirectUri: process.env.REACT_APP_AUTH0_CALLBACK_URL,
       responseType: 'token id_token',
       scope: 'openid profile all' 
       

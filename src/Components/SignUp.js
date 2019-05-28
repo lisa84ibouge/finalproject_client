@@ -21,7 +21,7 @@ function SignUp (props) {
         'content-type': 'application/json' } 
                    console.log("submitted form data: ", state.newUser);
             axios.post(
-              "http://localhost:8080/users", state.newUser, {headers}
+              process.env.REACT_APP_USERSERVER + "/users", state.newUser, {headers}
             ).then(function (result){
                 console.log(result.data);
                 setState({fireRedirect: true, user: result.data});

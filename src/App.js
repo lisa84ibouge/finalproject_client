@@ -39,7 +39,7 @@ function HomePage(props) {
     async function fetchData() {
       const result = await axios(
         //  process.env.REACT_APP_USERSERVER + "/user?email=" + props.auth.getProfile()
-        "http://localhost:8080/user?email=" + props.auth.profile.name,
+        process.env.REACT_APP_USERSERVER + "/user?email=" + props.auth.profile.name,
         { headers }
       );
       console.log("loggedin userdata:", result);

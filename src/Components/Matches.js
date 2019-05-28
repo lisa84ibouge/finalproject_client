@@ -19,7 +19,7 @@ function Matches(props) {
       "content-type": "application/json"
     };
     axios
-      .get("http://localhost:8080/matches?city=" + encodeURIComponent(props.city), { headers })
+      .get(process.env.REACT_APP_USERSERVER + "/matches?city=" + encodeURIComponent(props.city), { headers })
       .then(function(result) {
         console.log("Matches Two: ", result)
         const matchesDivs = result.data.map((m) => 
