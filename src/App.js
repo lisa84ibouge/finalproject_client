@@ -300,6 +300,7 @@ class InboxComponent extends React.Component {
   constructor(props) {
     super(props);
     this.props = props;
+    console.log("inbox Component props", props)
     this.inbox = undefined;
     this.refContainer = React.createRef();
     console.log("inboxComponent", props.history.location.state);
@@ -314,10 +315,12 @@ class InboxComponent extends React.Component {
   componentDidMount() {
     console.log("Use Effect", this.props.history.location.state);
     let chatIcon = document.getElementById("chatIcon");
+    let history = this.props.history;
+    let state = this.state;
     chatIcon.onclick = function() {
-      this.props.history.push({
+      history.push({
         pathname: "/results",
-        state: this.state
+        state: state
       });
     };
     chatIcon.hidden = false;
@@ -360,7 +363,7 @@ class InboxComponent extends React.Component {
   render() {
     return (
       <div className="InboxComponent">
-        <div ref={this.refContainer}> </div>
+        <div ref={this.refContainer} style={{width: "90%", margin: "30px", height: "500px"}}> </div>
       </div>
     );
   }
