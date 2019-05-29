@@ -7,10 +7,6 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-if (document.location.toString().match("http://www.jetsetmet.net")) {
-  document.location = process.env.REACT_APP_ROOT_URL;
-}
-
 const auth = new Auth();
 window.auth0 = auth;
 ReactDOM.render(<BrowserRouter>
