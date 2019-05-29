@@ -78,11 +78,9 @@ function HomePage(props) {
     }
     */
   }
-  
+
   document.getElementById("logoutButton").hidden=true;
-  if (document.location.toString().match("http://www.jetsetmet.net")) {
-    document.location = process.env.REACT_APP_ROOT_URL;
-  }
+
 
   return (
     <div>
