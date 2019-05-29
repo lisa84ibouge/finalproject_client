@@ -43,7 +43,7 @@ function SignUp(props) {
           <div className="ui form">
             <div className="three fields">
               <div className="field">
-                <label>First Name:</label>
+                <label style={{fontWeight: 'bold'}}>First Name:</label>
                 <input
                   onChange={updateField}
                   name="name"
@@ -52,7 +52,7 @@ function SignUp(props) {
                 />
               </div>
               <div className="field">
-                <label>Last Name:</label>
+                <label style={{fontWeight: 'bold'}}>Last Name:</label>
                 <input
                   onChange={updateField}
                   name="lastName"
@@ -61,7 +61,7 @@ function SignUp(props) {
                 />
               </div>
               <div className="field">
-                <label>Picture:</label>
+                <label style={{fontWeight: 'bold'}}>Picture:</label>
                 <input
                   onChange={updateField}
                   name="photo"
@@ -70,9 +70,9 @@ function SignUp(props) {
                 />
               </div>
             </div>
-            <div className="three fields">
+            <div className="field">
               <div className="field">
-                <label>Age:</label>
+                <label style={{fontWeight: 'bold'}}>Age:</label>
                 <input
                   onChange={updateField}
                   name="age"
@@ -81,7 +81,7 @@ function SignUp(props) {
                 />
               </div>
               <div className="field">
-                <label>Gender:</label>
+                <label style={{fontWeight: 'bold'}}>Gender:</label>
                 <select
                   className="browser-default"
                   name="gender"
@@ -93,7 +93,7 @@ function SignUp(props) {
                 </select>
               </div>
               <div className="field">
-                <label>Primary Language:</label>
+                <label style={{fontWeight: 'bold'}}>Primary Language:</label>
                 <input
                   onChange={updateField}
                   name="lang"
@@ -102,9 +102,9 @@ function SignUp(props) {
                 />
               </div>
               {/*</div>*/}
-              <div className="two fields">
+              <div className="field">
                 <div className="field">
-                  <label>City:</label>
+                  <label style={{fontWeight: 'bold'}}>City:</label>
                   <input
                     onChange={updateField}
                     name="city"
@@ -113,7 +113,7 @@ function SignUp(props) {
                   />
                 </div>
                 <div className="field">
-                  <label>Country:</label>
+                  <label style={{fontWeight: 'bold'}}>Country:</label>
                   <input
                     onChange={updateField}
                     type="text"
@@ -122,12 +122,12 @@ function SignUp(props) {
                 </div>
               </div>
               <div className="field">
-                <label>Biography:</label>
+                <label style={{fontWeight: 'bold'}}>Biography:</label>
                 <textarea onChange={updateField} name="bio" defaultValue="" />
               </div>
-              <div className="two fields">
+              <div className="field">
                 <div className="field">
-                  <label>Username:</label>
+                  <label style={{fontWeight: 'bold'}}>Username:</label>
                   <input
                     onChange={updateField}
                     name="username"
@@ -136,7 +136,7 @@ function SignUp(props) {
                   />
                 </div>
                 <div className="field">
-                  <label>Email Address:</label>
+                  <label style={{fontWeight: 'bold'}}>Email Address:</label>
                   <input
                     readOnly="true"
                     name="email"
@@ -150,9 +150,9 @@ function SignUp(props) {
           <h4 style={{color: "silver"}}className="ui dividing header">Desired Destination</h4>
           <div className="ui form">
             <div className="field">
-              <div className="two fields">
+              <div className="field">
                 <div className="required field">
-                  <label>City Two:</label>
+                  <label style={{fontWeight: 'bold'}}>City Two:</label>
                   <input
                     onChange={updateField}
                     name="cityTwo"
@@ -161,7 +161,7 @@ function SignUp(props) {
                   />
                 </div>
                 <div className="required field">
-                  <label>Country Two:</label>
+                  <label style={{fontWeight: 'bold'}}>Country Two:</label>
                   <input
                     onChange={updateField}
                     name="countryTwo"
