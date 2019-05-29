@@ -81,8 +81,8 @@ function HomePage(props) {
   document.getElementById("logoutButton").hidden=true;
   return (
     <div>
-      <h1>I don't know you. Please, log in.</h1>
-      <button onClick={props.auth.login}>Log in</button>
+      <h1>Welcome, please, log in.</h1>
+      <button style={{fontSize: '200%'}}onClick={props.auth.login}>Log in</button>
     </div>
   );
 }

@@ -39,7 +39,7 @@ function SignUp(props) {
     <div>
       <form onSubmit={submitForm} method="POST">
         <div>
-          <h4 className="ui dividing header">Personal Information</h4>
+          <h4 style={{color: "silver"}} className="ui dividing header">Personal Information</h4>
           <div className="ui form">
             <div className="three fields">
               <div className="field">
@@ -147,7 +147,7 @@ function SignUp(props) {
               </div>
             </div>
           </div>
-          <h4 className="ui dividing header">Desired Destination</h4>
+          <h4 style={{color: "silver"}}className="ui dividing header">Desired Destination</h4>
           <div className="ui form">
             <div className="field">
               <div className="two fields">
@@ -173,7 +173,7 @@ function SignUp(props) {
               {/*optional*/}
             </div>
           </div>
-          <input type="submit" id="submit" className="ui submit button" />
+          <input style={{fontSize: "200%"}}type="submit" id="submit" className="ui submit button" />
         </div>
       </form>
       {state.fireRedirect && (
