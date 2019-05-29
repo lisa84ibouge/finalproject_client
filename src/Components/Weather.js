@@ -13,7 +13,7 @@ return (
               <table>
                 <thead>
                   <tr>
-                    <th style={{textAlign: 'center', fontWeight: 'bold', fontSize: '150%'}}><b>Flights to this Location</b></th>
+                    <th style={{textAlign: 'center', fontWeight: 'bold', fontSize: '150%'}}><b>Weather in this Location</b></th>
                   </tr>
                 </thead>
                 <tbody id="appendtome" className="striped">
