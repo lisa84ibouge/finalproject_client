@@ -78,7 +78,7 @@ function HomePage(props) {
     }
     */
   }
-
+  document.getElementById("logoutButton").hidden=true;
   return (
     <div>
       <h1>I don't know you. Please, log in.</h1>
@@ -95,7 +95,7 @@ function App(props) {
       <Route
         exact
         path="/callback"
-        render={() => <Callback history={props.history} auth={props.auth} />}
+        render={() => <Callback history={props.history}auth={props.auth} />}
       />
       <Route
         exact
@@ -248,7 +248,7 @@ function ResultsComponent(props) {
             marginLeft: "15px"
           }}
         >
-          Welcome back, {state.user.name}!
+          Welcome, {state.user.name}!
         </span>
       </div>
       <CityUpdate

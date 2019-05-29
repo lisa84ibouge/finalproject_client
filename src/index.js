@@ -9,7 +9,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 const auth = new Auth();
-
+window.auth0 = auth;
 ReactDOM.render(<BrowserRouter>
     <App auth={auth} />
   </BrowserRouter>, document.getElementById('root'));
