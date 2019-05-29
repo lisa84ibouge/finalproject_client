@@ -127,7 +127,7 @@ function SignUp(props) {
               </div>
               <div className="field">
                 <div className="field">
-                  <label style={{fontWeight: 'bold'}}>Username:</label>
+                  <label style={{fontWeight: 'bold'}}>Social Media Handle:</label>
                   <input
                     onChange={updateField}
                     name="username"
