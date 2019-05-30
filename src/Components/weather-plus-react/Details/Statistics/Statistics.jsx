@@ -7,19 +7,19 @@ const Day = (props) => {
         <h1>Statistics</h1>
 
         <div className="stat" id="humidity">
-          <img src="img/humidity.jpg" alt="icon"/>
+          <img src="weather-plus-react/img/humidity.jpg" alt="icon"/>
           <p>{props.humidity}%</p>
         </div>
         <div className="stat" id="pressure">
-          <img src="img/pressure.jpg" alt="icon"/>
+          <img src="weather-plus-react/img/pressure.jpg" alt="icon"/>
           <p>{props.pressure } hPa</p>
         </div>
         <div className="stat" id="wind">
-          <img src="img/wind.jpg" alt="icon"/>
+          <img src="weather-plus-react/img/wind.jpg" alt="icon"/>
           <p>{props.wind} mph</p>
         </div>
         <div className="stat" id="cloud">
-          <img src="img/cloud.jpg" alt="icon"/>
+          <img src="weather-plus-react/img/cloud.jpg" alt="icon"/>
           <p>{props.cloud}%</p>
         </div>
       </div>
