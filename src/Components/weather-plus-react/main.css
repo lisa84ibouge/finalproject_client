@@ -35,10 +35,10 @@
   box-shadow: 0 0 5px rgba(109, 207, 246, 0.5);
 }
 .form .search:-moz-placeholder {
-  color: #999;
+  color: black;
 }
 .form .search::-webkit-input-placeholder {
-  color: #999;
+  color: black;
 }
 
 .weather {
@@ -109,7 +109,7 @@
   box-sizing: border-box;
 }
 .menu .details h1 {
-  color: #cdcdcd;
+  color: black;
   font-weight: 300;
   font-size: 23px;
   padding-bottom: 10px;
@@ -121,18 +121,18 @@
   float: left;
   width: 25%;
   text-align: center;
-  color: #cdcdcd;
+  color: black;
 }
 .statistics .stat img {
   width: 40%;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .forecast {
   margin-top: 160px;
 }
 .forecast .options {
-  float: right;
+  
   font-size: 15px;
   line-height: 39px;
   font-weight: 400;
@@ -156,7 +156,7 @@
   padding-top: 8px;
 }
 .forecast .day-date {
-  color: #cdcdcd;
+  color: black;
   float: left;
   width: 100%;
   margin: 0;
@@ -172,7 +172,7 @@
 }
 .forecast .day-stat-high:after, .forecast .day-stat-low:after {
   content: " °";
-  color: #cdcdcd;
+  color:black;
 }
 .forecast .day-stat-low {
   color: #f78167;
@@ -188,7 +188,7 @@
   line-height: 13px;
   top: -4px;
   position: relative;
-  color: #cdcdcd;
+  color: black;
 }
 .forecast .day-stat-wind .sup:before, .forecast .day-stat-humidity .sup:before {
   content: " ";

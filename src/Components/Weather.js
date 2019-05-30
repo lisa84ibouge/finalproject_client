@@ -7,7 +7,7 @@ function Weather() {
 return (
 
 
-          <div className="card-panel z-depth-5">
+          <div className="card-panel z-depth-5" style={{overflowY: 'scroll', height: '450px'}}>
           <div className="weatherPlusReactRoot">
            <WeatherPlusReact/>
           </div>
