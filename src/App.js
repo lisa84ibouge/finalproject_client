@@ -284,7 +284,11 @@ function ResultsComponent(props) {
 
       <div className="row">
         <div className="col s6 m6" id="col1">
-          <Weather />
+          <Weather 
+          initialized={state.initialized} 
+          center={state.coordinates}
+          cityTwo={state.user.cityTwo}
+          />
         </div>
         <div className="col s6 m6" id="col2">
           <Landmark
