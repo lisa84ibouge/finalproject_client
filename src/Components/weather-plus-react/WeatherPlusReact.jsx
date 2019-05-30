@@ -5,7 +5,7 @@ import './main.css';
 
 const API_KEY = "44c39c7592b9dc454cf30935fd472974";
 
-class App extends React.Component {
+class WeatherPlusReact extends React.Component {
   constructor(props){
     super(props);
 
@@ -156,16 +156,17 @@ class App extends React.Component {
   render(){
     return(
       <React.Fragment>
+{
 
-
-        <Weather
-          date={this.state.date}
-          temperature={this.state.temperature}
-          city={this.state.city}
-          humidity={this.state.humidity}
-          description={this.state.description}
-          error={this.state.error}
-        />
+       // <Weather
+       //   date={this.state.date}
+       //   temperature={this.state.temperature}
+       //   city={this.state.city}
+     //     humidity={this.state.humidity}
+     //     description={this.state.description}
+      //    error={this.state.error}
+       // />
+}
 
         <Details
           submitWeather={this.submitWeather}
@@ -182,4 +183,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default WeatherPlusReact;
