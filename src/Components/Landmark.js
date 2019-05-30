@@ -55,7 +55,7 @@ function Landmark(props) {
   return (
    
     <div className="card-panel z-depth-5"
-      style={{ overflowY: "scroll", height: "450px" }}>
+      style={{ overflowY: "scroll", height: "535px" }}>
       <span
               className="landmarkHeader"
               style={{
