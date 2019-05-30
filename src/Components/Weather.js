@@ -25,7 +25,7 @@ function Weather(props) {
 return (
 
 
-          <div className="card-panel z-depth-5" >
+          <div className="card-panel z-depth-5" style={{}} >
             <ReactWeather
             forecast="5days"  
             apikey="d28ee5045a8541c094342319193005"
