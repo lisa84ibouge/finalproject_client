@@ -21,21 +21,20 @@ function Weather(props) {
       cityTwo: props.cityTwo
     });
   }, [props]);
-  console.log("WEATHER: ", state.center)
-return (
 
-
+  console.log("WEATHER: ", state)
+  return (
           <div className="card-panel z-depth-5" style={{}} >
             <ReactWeather
+            key={state.cityTwo}
             forecast="5days"  
             apikey="d28ee5045a8541c094342319193005"
             type="city"
             city={state.cityTwo}
-            
             />
           </div>
     
-    );
+  );
 }
 
 
