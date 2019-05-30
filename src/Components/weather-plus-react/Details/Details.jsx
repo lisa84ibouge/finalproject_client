@@ -7,10 +7,12 @@ const Day = (props) => {
   if(props.submitWeather != null){
     return(
       <div className="menu">
-        <Form
-          submitWeather={props.submitWeather}
-          getLocation={props.getLocation}
-        />
+      {
+       // <Form
+         // submitWeather={props.submitWeather}
+         // getLocation={props.getLocation}
+       // />
+      }
 
         <div className="details">
           <Statistics
