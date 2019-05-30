@@ -194,18 +194,8 @@
   content: " ";
 }
 
-html {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  padding: 0;
+#weatherPlusReactRoot {
   font-family: "Exo 2", sans-serif;
-  background: #fff;
-}
-
-#root {
   background: #fff;
   width: 70%;
   height: 600px;
@@ -219,6 +209,7 @@ body {
   transform: translate(-50%, -50%);
   box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15);
 }
+/*
 
 @media (max-width: 1100px) {
   .weather {
@@ -247,5 +238,6 @@ body {
     margin: 0;
   }
 }
+*/
 
 /*# sourceMappingURL=main.css.map */

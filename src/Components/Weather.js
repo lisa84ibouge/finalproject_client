@@ -8,9 +8,10 @@ return (
 
 
           <div className="card-panel z-depth-5">
+          <div className="weatherPlusReactRoot">
            <WeatherPlusReact/>
           </div>
-    
+          </div>
     );
 }
 
