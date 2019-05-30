@@ -1,6 +1,7 @@
 import React from "react";
 import Weather from "./Weather/Weather.jsx";
 import Details from "./Details/Details.jsx";
+import './main.css';
 
 const API_KEY = "44c39c7592b9dc454cf30935fd472974";
 
