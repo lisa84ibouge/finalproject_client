@@ -100,7 +100,7 @@ function wikiImages(txt) {
     method: "GET",
     dataType: "jsonp",
     headers: {
-      'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn'
+      'x-api-key': 'aA5BCRYEPS6a7WA8yxOtx5AA3mzJDSX47GLUTz0G'
     },
     success: function (newData) {
       console.log("newData");
