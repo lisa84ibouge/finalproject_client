@@ -124,7 +124,7 @@ function contentSearch(poiID) {
     async: true,
     dataType: "json",
     headers: {
-      'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn',
+      'x-api-key': 'aA5BCRYEPS6a7WA8yxOtx5AA3mzJDSX47GLUTz0G',
       "Access-Control-Allow-Origin": "*"
     },
     success: function (data, err) {
@@ -234,7 +234,7 @@ function boundingBox(txt) {
     async: true,
     dataType: "json",
     headers: {
-      'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn'
+      'x-api-key': 'aA5BCRYEPS6a7WA8yxOtx5AA3mzJDSX47GLUTz0G'
     },
     success: function (data, err) {
       console.log("This is the bounding box response: ");
@@ -262,7 +262,7 @@ function placeDetails(bbResponse) {
     async: true,
     dataType: "json",
     headers: {
-      'x-api-key': 'aOz451xNYq4V2Z8wsYDIV2lZWqBENUTK2tk1ersn'
+      'x-api-key': 'aA5BCRYEPS6a7WA8yxOtx5AA3mzJDSX47GLUTz0G'
     },
     success: function (data, err) {
       console.log("This is the place details response: ");
