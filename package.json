@@ -5,7 +5,7 @@
   "dependencies": {
     "@react-google-maps/api": "^1.2.3-alpha.11",
     "auth0-js": "^9.10.2",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "dotenv": "^8.0.0",
     "google-map-react": "^1.1.4",
     "prop-types": "^15.7.2",
